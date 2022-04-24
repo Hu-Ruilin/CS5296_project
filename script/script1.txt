@@ -1,0 +1,34 @@
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew install pypy3 gmp pkg-config openssl
+
+git clone https://github.com/QuarkChain/pyquarkchain.git
+
+cd pyquarkchain
+
+mkdir ~/virtualenv
+
+pypy3 -m venv ~/virtualenv/qc
+
+source ~/virtualenv/qc/bin/activate
+
+brew install rocksdb
+
+pip install -e .
+
+python -m pytest
+
+pip install pre-commit
+
+pre-commit install
+
+cd quarkchain/cluster
+
+pypy3 cluster.py --p2p
+
+pypy3 multi_cluster.py --num_clusters=3 --p2p --start_simulated_mining
+
+BOOTSTRAP_ENODE=enode://$BOOTSTRAP_PUB_KEY@$BOOTSTRAP_IP:$BOOTSTRAP_DISCOVERY_PORT
+
+pypy3 cluster.py --p2p --bootnodes=$BOOTSTRAP_ENODE

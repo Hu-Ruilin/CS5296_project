@@ -1,0 +1,16 @@
+apt-get update
+apt-get install -y freeglut3-dev libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev gcc make libcurl4-openssl-dev autoconf git screen libncurses5-dev opencl-headers build-essential protobuf-compiler libprotoc-dev libboost-all-dev libleveldb-dev hdf5-tools libhdf5-serial-dev libopencv-core-dev libopencv-highgui-dev libsnappy-dev libsnappy1v5 libatlas-base-dev cmake libstdc++6-8-dbg libgoogle-glog0v5 libgoogle-glog-dev libgflags-dev liblmdb-dev gfortran libjansson-dev uthash-dev autogen libtool pkg-config
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/11.2.1/local_installers/cuda-repo-ubuntu1804-11-2-local_11.2.1-460.32.03-1_amd64.deb
+dpkg -i cuda-repo-ubuntu1804-11-2-local_11.2.1-460.32.03-1_amd64.deb
+sudo apt-key add /var/cuda-repo-ubuntu1804-11-2-local/7fa2af80.pub
+apt-get update
+apt-get -y install cuda
+nvidia-smi
+apt-get install software-properties-common
+add-apt-repository ppa:ethereum/Ethereum
+apt-get update
+apt-get install ethereum geth
+mkdir ethminer
+cd ethminer
